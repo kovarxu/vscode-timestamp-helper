@@ -30,9 +30,11 @@ const dateMarkShort2FullMap = {
   'Y': 'year',
   'M': 'month',
   'h': 'hour',
+  'H': 'hour',
   'm': 'minute',
   's': 'second',
   'w': 'week',
+  'W': 'week',
   'S': 'millisecond'
 } as const;
 

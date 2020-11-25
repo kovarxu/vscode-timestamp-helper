@@ -1,11 +1,11 @@
 /**
  * TimeTransfer, the converter contains three part:
- * 1. prefix, can be s(timestamp in second), m(timestamp in millisecond) u(in utc time zone)
+ * 1. prefix, can be $(get timestamp in second), @(get timestamp in millisecond) %(in utc time zone)
  * 2.1 time offset, something like 1Y2M1w3D8h3m2s100S; if no adverbial is set, then the time offset will change to be 2.2
- * 2.2 time string, will use Date constructor to get timestamp
- * 3. adverbial, include: ago/before, later/after, from now
+ * 2.2 time string, will use dayjs() to get timestamp
+ * 3. adverbial, include: "ago/before", "later/after" and "from now"
  * 
- * "a few moments later" also works :>_<:
+ * "now", "a few moments later" also works :>_<:
  */
 import Parser from './parser';
 import dayjs = require('dayjs');
