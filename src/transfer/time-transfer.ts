@@ -1,5 +1,5 @@
 /**
- * TimeTransfer, the converter contains three part:
+ * TimeTransfer, the converter contains three parts:
  * 1. prefix, can be $(get timestamp in second), @(get timestamp in millisecond) %(in utc time zone)
  * 2.1 time offset, something like 1Y2M1w3D8h3m2s100S; if no adverbial is set, then the time offset will change to be 2.2
  * 2.2 time string, will use dayjs() to get timestamp
