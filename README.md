@@ -1,72 +1,44 @@
-# timestamp-helper README
+# Timestamp Helper
 
-This is the README for your extension "timestamp-helper". After writing up a brief description, we recommend including the following sections.
+Make it more convenient to manipulate timestamp. [中文版](./README_CN.md)
 
-## Features
+![example.gif](./example.gif)
 
-plan:
+### Features
 
-- 鼠标悬停显示时间(done)
-- 根据用户设置调整时间的展示样式，以及正则匹配的数字位数
-- 时间转换快捷键
-- 面板输入时间选择（多少天之前之后那种）
+- Hover to see readable formatted time (the format can be specified by vscode configuration).
+- guess second or millisecond automatically.
+- provide some commands to add or alter timestamps.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Hover Display
 
-For example if there is an image subfolder under your extension project workspace:
+Vscode configuration: `timestamp-helper.format`, default to `YYYY-MM-DD HH:mm:ss`, format patterns [here](https://dayjs.gitee.io/docs/en/display/format)
 
-\!\[feature X\]\(images/feature-x.png\)
+### Change Your Timestamp
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+* command: `transfer timestamp`
+* keybinding: `alt+t alt+t`
 
-## Requirements
+#### examples
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+* modify the timestamp in selections to 1 day, 5 hours and 3 minutes later: `1d5h3m later`
+* insert a timestamp at a specified timing: `$2020-09-12T08:09:26` (millisecond is used by default, you can use $ in front of the timing to turn to second)
+* insert a timestamp at a specified UTC timing: `%2020-09-12T08:09:26`
+* insert a timestamp 1 week and 5 hours ago from the current time: `1w5h ago from now`
 
-## Extension Settings
+#### format
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+* parts: `<prefix?><main> <adverbial?>`
 
-For example:
+prefix: `$`: output timestamp in second, `@`: output timestamp in millisecond, `%` the input timing is in UTC
 
-This extension contributes the following settings:
+main: [dayjs](https://dayjs.gitee.io/docs/en/parse/string) will be used to convert the main part to timestamp if no adverbial is provided, the main part should be an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string, such as `2019-08-12T15:03:22.010Z`. If any adverbial is provided, then the main part is parsed as time offsets, which the format is continuous `number+unit`, such as `1Y2M1d4h` (1 year, 2 months, 1 day and 4 hours). The unit is an abbreviation of corresponding time unit: `Y` year，`M` month，`w` week，`d` day，`h` hour，`m` minute，`s` second，`S` millisecond.
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+adverbial: `after/later/ago/before`, may be followed by `from now`
 
-## Known Issues
+* special words
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+`now`: the current time
 
-## Release Notes
+`a few moments later`: a random time from now
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
