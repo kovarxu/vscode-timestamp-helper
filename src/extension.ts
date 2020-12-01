@@ -13,9 +13,17 @@ dayjs.extend(utc);
 export function activate(context: vscode.ExtensionContext) {
 	// get configuration
 	const [shortest = 9, longest = 13] = vscode.workspace.getConfiguration().get('timestamp-helper.activeLimit') || [];
-	const timeFormat: string = vscode.workspace.getConfiguration().get('timestamp-helper.format') || 'YYYY-MM-DD HH:mm:ss';
+	let timeFormat: string = vscode.workspace.getConfiguration().get('timestamp-helper.format') || 'YYYY-MM-DD HH:mm:ss';
 	const pureNumberReg = new RegExp(`(\\D|^)(\\d{${shortest},${longest}})(\\D|$)`);
 	const timeTransfer = new TimeTransfer();
+
+	// listen on configuration change
+	vscode.workspace.onDidChangeConfiguration((e) => {
+		const timeFormatHasChanged = e.affectsConfiguration('timestamp-helper.format');
+		if (timeFormatHasChanged) {
+			timeFormat = vscode.workspace.getConfiguration().get('timestamp-helper.format') || 'YYYY-MM-DD HH:mm:ss';
+		}
+	});
 
 	// subscribe hover
 	const hover = vscode.languages.registerHoverProvider({scheme: '*', language: '*'}, {
