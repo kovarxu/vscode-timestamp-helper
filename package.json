@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguage:javascript",
+		"onLanguage:plaintext",
 		"onCommand:timestamp-helper.helloWorld",
 		"onCommand:timestamp-helper.transfer"
 	],

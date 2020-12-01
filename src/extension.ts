@@ -18,7 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const timeTransfer = new TimeTransfer();
 
 	// subscribe hover
-	const hover = vscode.languages.registerHoverProvider({scheme: '*', language: 'javascript'}, {
+	const hover = vscode.languages.registerHoverProvider({scheme: '*', language: '*'}, {
 		provideHover(document, position, token) {
 			// get word at the hover position: a word or a sentence
 			const wordAtPosition = document.getText(document.getWordRangeAtPosition(position));

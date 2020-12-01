@@ -38,6 +38,8 @@
 
 * 特殊字
 
-`now` -- 当前时间    
+`now` -- 当前时间   
+
+![pic.jpg](./pic.jpg)
 
 `a few moments later` -- 当前时间之后的一个随机时间
