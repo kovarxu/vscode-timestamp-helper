@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 				const numMatch = regMatch[2];
 				const result = new vscode.MarkdownString();
 				const guessIsmillisecond = numMatch.length > 10;
-				result.appendMarkdown(`Guess timestamp in ${guessIsmillisecond ? 'millisecond' : 'second'}:\n`);
+				result.appendMarkdown(`Guess timestamp in ${guessIsmillisecond ? 'milliseconds' : 'seconds'}:\n`);
 				const day = guessIsmillisecond ? dayjs(+numMatch) : dayjs.unix(+numMatch);
 				result.appendMarkdown(`\* Local: \`${day.format(timeFormat)}\`\n`);
 				const dayInUTC = day.utc();
