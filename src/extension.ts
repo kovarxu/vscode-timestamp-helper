@@ -59,22 +59,24 @@ export function activate(context: vscode.ExtensionContext) {
 		// get selections
 		const textEditor = vscode.window.activeTextEditor;
 		const selections = textEditor?.selections || [];
-		if (selections.length && inputText) {
-			try {
-				selections.forEach(sel => {
-					const selText = textEditor?.document?.getText(sel) || '';
-					const result = timeTransfer.transfer(inputText, +selText || 0);
-					if (result) {
-						textEditor?.edit(editBuilder => {
-							editBuilder.replace(sel, String(result));
-						});
-					} else {
-						vscode.window.showInformationMessage(`"${inputText}" is wrongly transferred "${selText}" to ${result}`);
-					}
-				});
-			} catch(e) {
-				vscode.window.showInformationMessage(`oops! there seems to be some bugs. Error message: ${e.message}`);
-			}
+		try {
+			const replaceTexts = selections.map(sel => {
+				const selText = textEditor?.document?.getText(sel) || '';
+				const result = timeTransfer.transfer(inputText, +selText || 0);
+				if (result) {
+					return String(result);
+				} else {
+					vscode.window.showInformationMessage(`"${inputText}" wrongly transferred "${selText}" to ${result}`);
+					return selText;
+				}
+			});
+
+			// text replace should be done in one editting, for single editting generates a new activeTextEditor.
+			textEditor?.edit(editBuilder => {
+				selections.map((sel, index) => editBuilder.replace(sel, replaceTexts[index]));
+			});
+		} catch(e) {
+			vscode.window.showInformationMessage(`oops! there seemed to be some bad things. Error message: ${e.message}`);
 		}
 	});
 
