@@ -2,7 +2,7 @@
 	"name": "timestamp-helper",
 	"displayName": "Timestamp Helper",
 	"description": "easy to display and manipulate timestamp.",
-	"publisher": "UjG078988",
+	"publisher": "kovar",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.49.2"
