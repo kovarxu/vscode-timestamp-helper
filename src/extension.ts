@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// get configuration
 	const [shortest = 9, longest = 13] = vscode.workspace.getConfiguration().get('timestamp-helper.activeLimit') || [];
 	let timeFormat: string = vscode.workspace.getConfiguration().get('timestamp-helper.format') || 'YYYY-MM-DD HH:mm:ss';
-	const pureNumberReg = new RegExp(`(\\D|^)(\\d{${shortest},${longest}})(\\D|$)`);
+	const pureNumberReg = new RegExp(`^(\\d{${shortest},${longest}})$`);
 	const timeTransfer = new TimeTransfer();
 
 	// listen on configuration change
@@ -32,8 +32,8 @@ export function activate(context: vscode.ExtensionContext) {
 			const wordAtPosition = document.getText(document.getWordRangeAtPosition(position));
 			const regMatch = wordAtPosition.match(pureNumberReg);
 			if (regMatch) {
-				const numMatch = regMatch[2];
 				const result = new vscode.MarkdownString();
+				const numMatch = regMatch[1];
 				const guessIsmillisecond = numMatch.length > 10;
 				result.appendMarkdown(`Guess timestamp in ${guessIsmillisecond ? 'milliseconds' : 'seconds'}:\n`);
 				const day = guessIsmillisecond ? dayjs(+numMatch) : dayjs.unix(+numMatch);

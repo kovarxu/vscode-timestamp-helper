@@ -21,11 +21,17 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"title": "Timestamp-Helper",
+			"properties": {
+				"timestamp-helper.format": {
+					"type": "string",
+					"default": "YYYY-MM-DD HH:mm:ss",
+					"description": "time display format"
+				}
+			}
+		},
 		"commands": [
-			{
-				"command": "timestamp-helper.helloWorld",
-				"title": "Hello World"
-			},
 			{
 				"command": "timestamp-helper.transfer",
 				"title": "transfer timestamp"

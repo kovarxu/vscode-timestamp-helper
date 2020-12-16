@@ -6,7 +6,7 @@ Make it more convenient to manipulate timestamps. [中文版](./README_CN.md)
 
 ### Features
 
-- Hover to see readable formatted time (the format can be specified by vscode configuration).
+- Hover to display readable formatted time (the format can be specified by vscode configuration).
 - guess second or millisecond automatically.
 - provide some commands to add or alter timestamps.
 
